@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- list the processes to be deployed -->
+<processes>
+	<process resource="diagrams/twitterProcess.bpmn20.xml" /> 
+</processes>
