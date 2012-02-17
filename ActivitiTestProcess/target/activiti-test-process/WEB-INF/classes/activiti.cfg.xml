@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- activiti configuration for jboss AS 7 -->
+
+	<!-- lookup the JTA-Transaction manager -->
+	<bean id="transactionManager" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName" value="java:jboss/TransactionManager"></property>
+		<property name="resourceRef" value="true" />
+	</bean>
+
+	<!-- process engine configuration -->
+	<bean id="processEngineConfiguration" class="org.activiti.cdi.CdiJtaProcessEngineConfiguration">
+		<property name="dataSourceJndiName" value="java:jboss/datasources/ExampleDS" />
+		<property name="databaseType" value="h2" />
+		<property name="transactionManager" ref="transactionManager" />
+		<property name="transactionsExternallyManaged" value="true" />
+		<property name="databaseSchemaUpdate" value="true" />
+
+		<property name="mailServerHost" value="localhost" />
+		<property name="mailServerPort" value="2525" />
+
+	</bean>
+
+</beans>
